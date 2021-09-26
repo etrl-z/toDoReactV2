@@ -1,6 +1,10 @@
+html {
+    background: linear-gradient(180deg, rgb(240, 240, 240) 80%, rgb(184, 184, 184));
+}
+
 body {
     margin: 0px;
-    background-color: #e6e6e6 !important;
+    background: transparent !important;
 }
 
 .container-box {
@@ -15,7 +19,7 @@ body {
 .input {
     height: 3rem;
     margin: 1rem 0;
-    padding: 0 1rem !important;
+    padding: 0 1rem;
 }
 
 .row2, .row3 {
