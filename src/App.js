@@ -43,21 +43,21 @@ export default function App() {
 
   return (
     <>
-      <div class="container">
+      <div class="container-box">
         <div class="list">
           <TodoList list={todos} toggleTodos={toggleTodos} />
         </div>
         <input class="row1 input" ref={nameRef} type="text" placeholder="Add your next Task..." />
         <div class="row2">
-          <div class="button" onClick={handleAdd}>
+          <div class="button button-add" onClick={handleAdd}>
             <div class="button-text">ADD TASK</div>
           </div>
-          <div class="button" onClick={handleClear}>
+          <div class="button button-clear" onClick={handleClear}>
             <div class="button-text">CLEAR DONE</div>
           </div>
         </div>
         <div class="row3">
-          <div class="text-bottom">YOU HAVE <strong>{todos.filter(todo => !todo.completed).length}</strong> LEFT TO DO!</div>
+          <div class="text-bottom">YOU HAVE <strong>{todos.filter(todo => !todo.completed).length}</strong> TASKS LEFT TO DO!</div>
         </div>
       </div>
 
