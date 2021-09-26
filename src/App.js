@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
 import { v4 as uuidv4 } from 'uuid';
+import './todoStyle.css';
+import './bootstrap/css/bootstrap.min.css';
 
 const LOCAL_STORAGE_ID = "todoApp.todos"
 
@@ -41,11 +43,24 @@ export default function App() {
 
   return (
     <>
-      <TodoList list={todos} toggleTodos = {toggleTodos} />
-      <input ref={nameRef} type="text" />
-      <button onClick={handleAdd}>ADD</button>
-      <button onClick={handleClear}>CLEAR DONE</button>
-      <div>{todos.filter(todo => !todo.completed).length} left To Do</div>
+      <div class="container">
+        <div class="list">
+          <TodoList list={todos} toggleTodos={toggleTodos} />
+        </div>
+        <input class="row1 input" ref={nameRef} type="text" placeholder="Add your next Task..." />
+        <div class="row2">
+          <div class="button" onClick={handleAdd}>
+            <div class="button-text">ADD TASK</div>
+          </div>
+          <div class="button" onClick={handleClear}>
+            <div class="button-text">CLEAR DONE</div>
+          </div>
+        </div>
+        <div class="row3">
+          <div class="text-bottom">YOU HAVE <strong>{todos.filter(todo => !todo.completed).length}</strong> LEFT TO DO!</div>
+        </div>
+      </div>
+
     </>
   )
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './todoStyle.css';
 
 export default function ToDoElement({ todo, toggleTodos }) {
 
@@ -7,11 +8,13 @@ export default function ToDoElement({ todo, toggleTodos }) {
     }
 
     return (
-        <div>
-            <label>
-                <input type="checkbox" checked={todo.completed} onChange={handleToDoClick}></input>
-                {todo.name}
-            </label>
+        <div class="list-item">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={todo.completed} onChange={handleToDoClick}></input>
+                <label class="form-check-label" for="flexCheckDefault">
+                    {todo.name}
+                </label>
+            </div>
         </div>
     )
 }
