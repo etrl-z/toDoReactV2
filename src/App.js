@@ -44,7 +44,7 @@ export default function App() {
       <TodoList list={todos} toggleTodos = {toggleTodos} />
       <input ref={nameRef} type="text" />
       <button onClick={handleAdd}>ADD</button>
-      <button onClick={handleClear}>CLEAR</button>
+      <button onClick={handleClear}>CLEAR DONE</button>
       <div>{todos.filter(todo => !todo.completed).length} left To Do</div>
     </>
   )
