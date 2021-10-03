@@ -41,6 +41,11 @@ export default function App() {
     setTodos(clearedList)
   }
 
+  // document.addEventListener("keyup", function (event) {
+  //   if (event.code === "Enter") return
+  //     handleAdd();
+  // });
+
   return (
     <>
       <div class="container-box">

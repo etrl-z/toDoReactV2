@@ -1,5 +1,15 @@
+:root {
+    --green-full: rgb(29, 124, 76);
+    --green-light: rgb(43, 173, 108);
+    --red-full: rgb(211, 47, 47);
+    --red-light: rgb(248, 61, 61);
+    --bg-main:rgb(245, 245, 245);
+    --bg-shade:rgb(204, 204, 204);
+}
+
 html {
-    background: linear-gradient(180deg, rgb(240, 240, 240) 80%, rgb(184, 184, 184));
+    background: linear-gradient(180deg, var(--bg-main)  90%, var(--bg-shade));
+    background-attachment: fixed;
 }
 
 body {
@@ -34,19 +44,19 @@ body {
 }
 
 .button-add {
-    background-color: rgb(29, 124, 76);
+    background-color: var(--green-full);
 }
 
 .button-clear {
-    background-color: rgb(211, 47, 47);
+    background-color: var(--red-full);
 }
 
 .button-add:hover {
-    background-color: rgb(43, 173, 108);
+    background-color: var(--green-light);;
 }
 
 .button-clear:hover {
-    background-color: rgb(248, 61, 61);
+    background-color: var(--red-light);;
 }
 
 .button-text {
