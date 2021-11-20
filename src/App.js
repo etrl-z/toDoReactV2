@@ -4,22 +4,27 @@ import { v4 as uuidv4 } from 'uuid';
 import './todoStyle.css';
 import './bootstrap/css/bootstrap.min.css';
 
-const LOCAL_STORAGE_ID = "todoApp.todos"
+const LOCAL_STORAGE_ID = "localstorageKey"
 
 export default function App() {
 
+  //collection + function which updates collection = state(default empty)
   const [todos, setTodos] = useState([]);
+  //reference html elements
   const nameRef = useRef();
 
+  //load list from local storage when the app opens (the empty array of parameters never triggers the function again)
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ID))
     if (storedTodos) setTodos(storedTodos)
   }, [])
 
+  //save items when state changes
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ID, JSON.stringify(todos));
   }, [todos])
 
+  //receive the id of a checked task and updates list
   function toggleTodos(id) {
     const newTodos = [...todos]
     const task = newTodos.find(task => task.id === id)
@@ -27,15 +32,17 @@ export default function App() {
     setTodos(newTodos)
   }
 
+  //replace previous list with the populated one
   function handleAdd(e) {
     const name = nameRef.current.value;
     if (name === "") return
     setTodos(previous => {
       return [...previous, { id: uuidv4(), name: name, completed: false }]
     })
-    nameRef.current.value = null;
+    nameRef.current.value = null; //resets input field
   }
 
+  //replace previous list with the cleared one
   function handleClear(e) {
     const clearedList = todos.filter(todo => !todo.completed)
     setTodos(clearedList)
