@@ -34,7 +34,7 @@ export default function App() {
 
   //replace previous list with the populated one
   function handleAdd(e) {
-    const name = nameRef.current.value;
+    const name = nameRef.current.value; //read input field value
     if (name === "") return
     setTodos(previous => {
       return [...previous, { id: uuidv4(), name: name, completed: false }]
@@ -48,10 +48,19 @@ export default function App() {
     setTodos(clearedList)
   }
 
-  // document.addEventListener("keyup", function (event) {
-  //   if (event.code === "Enter") return
-  //     handleAdd();
-  // });
+  //call add function when Enter is pressed
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        handleAdd();
+      }
+    };
+    document.addEventListener("keydown", listener); //when component is loaded
+    return () => {
+      document.removeEventListener("keydown", listener); //destroys the component
+    };
+  }, []);
 
   return (
     <>
