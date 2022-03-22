@@ -70,12 +70,8 @@ export default function App() {
         </div>
         <input class="row1 input" ref={nameRef} type="text" placeholder="Add your next Task..." />
         <div class="row2">
-          <div class="button button-add" onClick={handleAdd}>
-            <div class="button-text">ADD TASK</div>
-          </div>
-          <div class="button button-clear" onClick={handleClear}>
-            <div class="button-text">CLEAR DONE</div>
-          </div>
+          <p class="button button-add" onClick={handleAdd}>ADD TASK</p>
+          <p class="button button-clear" onClick={handleClear}>CLEAR DONE</p>
         </div>
         <div class="row3">
           <div class="text-bottom">YOU HAVE <strong>{todos.filter(todo => !todo.completed).length}</strong> TASKS LEFT TO DO!</div>

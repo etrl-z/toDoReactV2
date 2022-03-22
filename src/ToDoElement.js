@@ -12,7 +12,7 @@ export default function ToDoElement({ todo, toggleTodos }) {
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={todo.completed} onChange={handleToDoClick}></input>
                 <label class="form-check-label" for="flexCheckDefault">
-                    {todo.name}
+                    {!todo.completed ? todo.name : <s>{todo.name}</s>}
                 </label>
             </div>
         </div>
