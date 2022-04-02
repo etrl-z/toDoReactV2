@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import ToDoElement from "./ToDoElement";
 import "./todoStyle.css";
 import "./bootstrap/css/bootstrap.min.css";
 import { db } from "./firebaseConfiguration";
+import { useCollection } from "react-firebase-hooks/firestore";
 import {
   collection,
   doc,
@@ -14,17 +15,13 @@ import {
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const inputRef = useRef();
-
   const [todosSnapshot] = useCollection(
     query(collection(db, "todos"), orderBy("timestamp", "asc"))
   );
 
-  //receive and changes the id of a checked task
+  //receives ID and changes prop of a checked task
   function toggleTodos(id) {
     const checkedTask = todosSnapshot?.docs.find((task) => task.id === id);
     //Update completed on DB
@@ -37,6 +34,8 @@ export default function App() {
       { merge: true }
     );
   }
+
+  const inputRef = useRef();
 
   //ADD TASK
   function handleAdd(e) {
@@ -105,7 +104,12 @@ export default function App() {
         <div class="row3">
           <div class="text-bottom">
             YOU HAVE{" "}
-            <strong>{todosSnapshot?.docs.filter((todo) => !todo.data().completed).length}</strong>{" "}
+            <strong>
+              {
+                todosSnapshot?.docs.filter((todo) => !todo.data().completed)
+                  .length
+              }
+            </strong>{" "}
             TASKS LEFT TO DO!
           </div>
         </div>
