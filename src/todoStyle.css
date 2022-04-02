@@ -15,7 +15,7 @@ html {
 body {
     margin: 0px;
     background: transparent !important;
-    min-width: 1024px;
+    min-width: 1200px;
 }
 
 .container-box {
@@ -27,9 +27,37 @@ body {
     font-size: 1.2rem;
 }
 
-.form-check-input, .form-check-label {
+/*-------- LIST --------------------------------*/
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     cursor: pointer;
 }
+
+.list-item label {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.grey {
+    width: 15px;
+    height: 15px;
+    border-radius:50%;
+    background-color: grey;
+    margin: 8px;
+}
+
+.green {
+    width: 15px;
+    height: 15px;
+    border-radius:50%;
+    background-color: var(--green-light);
+    margin: 8px;
+}
+
+/*-------- INPUT --------------------------------*/
 
 .input {
     height: 3rem;
@@ -42,6 +70,8 @@ body {
     flex-direction: row;
     justify-content: space-around;
 }
+
+/*-------- BUTTONS --------------------------------*/
 
 .button {
     width: 40%;

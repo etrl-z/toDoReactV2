@@ -1,20 +1,26 @@
-import React from 'react';
-import './todoStyle.css';
+import React from "react";
+import "./todoStyle.css";
 
 export default function ToDoElement({ todo, toggleTodos }) {
+  function handleToDoClick() {
+    toggleTodos(todo.id);
+  }
 
-    function handleToDoClick() {
-        toggleTodos(todo.id)
-    }
-
-    return (
-        <div class="list-item">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={todo.completed} onChange={handleToDoClick}></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    {!todo.completed ? todo.name : <s>{todo.name}</s>}
-                </label>
-            </div>
-        </div>
-    )
+  return (
+    <div class="list-item" onClick={handleToDoClick}>
+      {!todo.completed ? (
+        <>
+          <div class="grey"></div>
+          <label>{todo.name}</label>
+        </>
+      ) : (
+        <>
+          <div class="green"></div>
+          <label>
+            <s>{todo.name}</s>
+          </label>
+        </>
+      )}
+    </div>
+  );
 }
