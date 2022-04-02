@@ -8,16 +8,16 @@ export default function ToDoElement({ todo, toggleTodos }) {
 
   return (
     <div class="list-item" onClick={handleToDoClick}>
-      {!todo.completed ? (
+      {!todo.data().completed ? (
         <>
           <div class="grey"></div>
-          <label>{todo.name}</label>
+          <label>{todo.data().name}</label>
         </>
       ) : (
         <>
           <div class="green"></div>
           <label>
-            <s>{todo.name}</s>
+            <s>{todo.data().name}</s>
           </label>
         </>
       )}

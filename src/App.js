@@ -1,50 +1,65 @@
 import React, { useState, useRef, useEffect } from "react";
-import TodoList from "./TodoList";
-import { v4 as uuidv4 } from "uuid";
+import ToDoElement from "./ToDoElement";
 import "./todoStyle.css";
 import "./bootstrap/css/bootstrap.min.css";
-
-const LOCAL_STORAGE_ID = "localstorageKey";
+import { db } from "./firebaseConfiguration";
+import {
+  collection,
+  doc,
+  query,
+  where,
+  orderBy,
+  Timestamp,
+  addDoc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function App() {
-  //collection + function which updates collection = state(default empty)
   const [todos, setTodos] = useState([]);
-  //reference html elements
   const inputRef = useRef();
 
-  //load list from local storage when the app opens (the empty array of parameters never triggers the function again)
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ID));
-    if (storedTodos) setTodos(storedTodos);
-  }, []);
+  const [todosSnapshot] = useCollection(
+    query(collection(db, "todos"), orderBy("timestamp", "asc"))
+  );
 
-  //save items when state changes
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_ID, JSON.stringify(todos));
-  }, [todos]);
-
-  //receive the id of a checked task and updates list
+  //receive and changes the id of a checked task
   function toggleTodos(id) {
-    const updatedTodos = [...todos];
-    const checkedTask = updatedTodos.find((task) => task.id === id);
-    checkedTask.completed = !checkedTask.completed;
-    setTodos(updatedTodos);
+    const checkedTask = todosSnapshot?.docs.find((task) => task.id === id);
+    //Update completed on DB
+    const checkedTaskRef = doc(db, "todos", id);
+    setDoc(
+      checkedTaskRef,
+      {
+        completed: !checkedTask.data().completed,
+      },
+      { merge: true }
+    );
   }
 
-  //replace previous list with the populated one
+  //ADD TASK
   function handleAdd(e) {
-    const newTask = inputRef.current.value; //read input field value
+    const newTask = inputRef.current.value;
     if (newTask === "") return;
-    setTodos((taskList) => {
-      return [...taskList, { id: uuidv4(), name: newTask, completed: false }];
+    const todosColRef = collection(db, "todos");
+    addDoc(todosColRef, {
+      name: newTask,
+      timestamp: Timestamp.fromDate(new Date()),
+      completed: false,
     });
     inputRef.current.value = null; //resets input field
   }
 
-  //replace previous list with the cleared one
+  const [todosCompletedSnapshot] = useCollection(
+    query(collection(db, "todos"), where("completed", "==", true))
+  );
+
+  //CLEAR COMPLETED
   function handleClear(e) {
-    const clearedList = todos.filter((todo) => !todo.completed);
-    setTodos(clearedList);
+    todosCompletedSnapshot.docs.forEach((task) => {
+      deleteDoc(doc(db, "todos", task.id));
+    });
   }
 
   //call add function when Enter is pressed
@@ -65,7 +80,13 @@ export default function App() {
     <>
       <div class="container-box">
         <div class="list">
-          <TodoList list={todos} toggleTodos={toggleTodos} />
+          {todosSnapshot?.docs.map((todoEl) => (
+            <ToDoElement
+              todo={todoEl}
+              key={todoEl.id}
+              toggleTodos={toggleTodos}
+            />
+          ))}
         </div>
         <input
           class="row1 input"
@@ -84,7 +105,7 @@ export default function App() {
         <div class="row3">
           <div class="text-bottom">
             YOU HAVE{" "}
-            <strong>{todos.filter((todo) => !todo.completed).length}</strong>{" "}
+            <strong>{todosSnapshot?.docs.filter((todo) => !todo.data().completed).length}</strong>{" "}
             TASKS LEFT TO DO!
           </div>
         </div>
