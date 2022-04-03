@@ -1,23 +1,23 @@
 import React from "react";
 import "./todoStyle.css";
 
-export default function ToDoElement({ todo, toggleTodos }) {
+export default function ToDoElement({ todo, id, toggleTodos }) {
   function handleToDoClick() {
-    toggleTodos(todo.id);
+    toggleTodos(id);
   }
 
   return (
     <div class="list-item" onClick={handleToDoClick}>
-      {!todo.data().completed ? (
+      {!todo.completed ? (
         <>
-          <div class="grey"></div>
-          <label>{todo.data().name}</label>
+          <div class="circle circle-grey"></div>
+          <label>{todo.name}</label>
         </>
       ) : (
         <>
-          <div class="green"></div>
+          <div class="circle circle-green"></div>
           <label>
-            <s>{todo.data().name}</s>
+            <s>{todo.name}</s>
           </label>
         </>
       )}

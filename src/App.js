@@ -38,7 +38,7 @@ export default function App() {
   const inputRef = useRef();
 
   //ADD TASK
-  function handleAdd(e) {
+  function handleAdd() {
     const newTask = inputRef.current.value;
     if (newTask === "") return;
     const todosColRef = collection(db, "todos");
@@ -55,7 +55,7 @@ export default function App() {
   );
 
   //CLEAR COMPLETED
-  function handleClear(e) {
+  function handleClear() {
     todosCompletedSnapshot.docs.forEach((task) => {
       deleteDoc(doc(db, "todos", task.id));
     });
@@ -81,7 +81,7 @@ export default function App() {
         <div class="list">
           {todosSnapshot?.docs.map((todoEl) => (
             <ToDoElement
-              todo={todoEl}
+              todo={todoEl.data()}
               key={todoEl.id}
               toggleTodos={toggleTodos}
             />
@@ -95,10 +95,10 @@ export default function App() {
         />
         <div class="row2">
           <p class="button button-add" onClick={handleAdd}>
-            ADD TASK
+            <strong>ADD NEW</strong>
           </p>
           <p class="button button-clear" onClick={handleClear}>
-            CLEAR DONE
+            <strong>CLEAR</strong>
           </p>
         </div>
         <div class="row3">

@@ -1,119 +1,141 @@
 :root {
-    --green-full: rgb(29, 124, 76);
-    --green-light: rgb(43, 173, 108);
-    --red-full: rgb(211, 47, 47);
-    --red-light: rgb(248, 61, 61);
-    --bg-main:rgb(245, 245, 245);
-    --bg-shade:rgb(204, 204, 204);
+  --green-full: rgb(29, 124, 76);
+  --green-light: rgb(43, 173, 108);
+  --red-full: rgb(211, 47, 47);
+  --red-light: rgb(248, 61, 61);
+  --grey: rgb(180, 180, 180);
+  --bg-main: rgb(245, 245, 245);
+  --bg-shade: rgb(204, 204, 204);
 }
 
 html {
-    background: linear-gradient(180deg, var(--bg-main)  90%, var(--bg-shade));
-    background-attachment: fixed;
+  background: linear-gradient(180deg, var(--bg-main) 90%, var(--bg-shade));
+  background-attachment: fixed;
 }
 
 body {
-    margin: 0px;
-    background: transparent !important;
-    min-width: 520px;
+  margin: 0px;
+  background: transparent !important;
+  min-width: 500px;
 }
 
 .container-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 5rem 30%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5rem 30%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
 }
 
 /*-------- LIST --------------------------------*/
 
 .list-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 }
 
 .list-item label {
-    margin-bottom: 5px;
-    cursor: pointer;
+  margin-bottom: 4px;
+  cursor: pointer;
 }
 
-.grey {
-    width: 15px;
-    height: 15px;
-    border-radius:50%;
-    background-color: grey;
-    margin: 8px;
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
-.green {
-    width: 15px;
-    height: 15px;
-    border-radius:50%;
-    background-color: var(--green-light);
-    margin: 8px;
+.circle-grey {
+  background-color: var(--grey);
+}
+
+.circle-green {
+  background-color: var(--green-light);
 }
 
 /*-------- INPUT --------------------------------*/
 
 .input {
-    height: 3rem;
-    margin: 2rem 0 0;
-    padding: 0 1rem;
+  height: 3rem;
+  margin: 2rem 0 0;
+  padding: 0 1rem;
 }
 
 .row2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /*-------- BUTTONS --------------------------------*/
 
 .button {
-    width: 40%;
-    margin: 1.5rem 0 0;
-    padding: 1rem;
-    cursor: pointer;
-    color: white;
-    text-align: center;
-    border-radius: 50px;
+  width: 40%;
+  margin: 2rem 0 0;
+  padding: 1rem;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  border-radius: 50px;
 }
 
 .button-add {
-    background-color: var(--green-full);
+  background-color: var(--green-full);
 }
 
 .button-clear {
-    background-color: var(--red-full);
+  background-color: var(--red-full);
 }
 
 .button-add:hover {
-    background-color: var(--green-light);;
+  background-color: var(--green-light);
 }
 
 .button-clear:hover {
-    background-color: var(--red-light);
+  background-color: var(--red-light);
 }
 
 .text-bottom {
-    padding: 1.5rem 2rem;
-    text-align: center;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+/*-------- TABLET --------------------------------*/
+
+@media screen and (max-width: 768px) {
+  .container-box {
+    margin: 5rem 15% !important;
+    font-size: 1.3rem;
+  }
+
+  .input {
+    height: 4rem;
+  }
+
+  .circle {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /*-------- MOBILE --------------------------------*/
 
-@media screen and (max-width: 1100px) {
-    .container-box {
-        margin: 5rem 15%;
-    }
-}
+@media screen and (max-width: 425px) {
+  .container-box {
+    margin: 5rem 10% !important;
+    font-size: 1.5rem;
+  }
 
-@media screen and (max-width: 520px) {
-    .container-box {
-        margin: 5rem;
-    }
+  .input {
+    height: 4.5rem;
+  }
+
+  .circle {
+    width: 18px;
+    height: 18px;
+  }
 }
