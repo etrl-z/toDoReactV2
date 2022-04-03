@@ -15,14 +15,14 @@ html {
 body {
     margin: 0px;
     background: transparent !important;
-    min-width: 1200px;
+    min-width: 520px;
 }
 
 .container-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 5rem 35%;
+    margin: 5rem 30%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.2rem;
 }
@@ -102,4 +102,18 @@ body {
 .text-bottom {
     padding: 1.5rem 2rem;
     text-align: center;
+}
+
+/*-------- MOBILE --------------------------------*/
+
+@media screen and (max-width: 1100px) {
+    .container-box {
+        margin: 5rem 15%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .container-box {
+        margin: 5rem;
+    }
 }
