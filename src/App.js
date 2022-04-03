@@ -81,8 +81,9 @@ export default function App() {
         <div class="list">
           {todosSnapshot?.docs.map((todoEl) => (
             <ToDoElement
-              todo={todoEl.data()}
               key={todoEl.id}
+              id={todoEl.id}
+              todo={todoEl.data()}
               toggleTodos={toggleTodos}
             />
           ))}
