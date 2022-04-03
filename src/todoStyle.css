@@ -127,9 +127,15 @@ body {
 @media screen and (max-width: 425px) {
   .container-box {
     margin: 5rem 10% !important;
+    font-size: 1.5rem;
   }
 
   .input {
     height: 4.5rem;
+  }
+
+  .circle {
+    width: 18px;
+    height: 18px;
   }
 }
