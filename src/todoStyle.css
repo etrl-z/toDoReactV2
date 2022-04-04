@@ -3,7 +3,7 @@
   --green-light: rgb(43, 173, 108);
   --red-full: rgb(211, 47, 47);
   --red-light: rgb(248, 61, 61);
-  --grey: rgb(180, 180, 180);
+  --grey-light: rgb(180, 180, 180);
   --bg-main: rgb(245, 245, 245);
   --bg-shade: rgb(204, 204, 204);
 }
@@ -49,8 +49,12 @@ body {
   margin: 10px;
 }
 
+.circle:hover {
+  background-color: grey;
+}
+
 .circle-grey {
-  background-color: var(--grey);
+  background-color: var(--grey-light);
 }
 
 .circle-green {
