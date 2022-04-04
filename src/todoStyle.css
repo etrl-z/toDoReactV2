@@ -38,8 +38,12 @@ body {
   cursor: pointer;
 }
 
-.list-item:hover > .circle {
+.list-item:hover > .circle-grey {
   background-color: var(--grey-full);
+}
+
+.list-item:hover > .circle-green {
+  background-color: var(--green-full);
 }
 
 .list-item label {
