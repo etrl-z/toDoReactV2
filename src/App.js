@@ -78,40 +78,46 @@ export default function App() {
   return (
     <>
       <div class="container-box">
-        <div class="list">
-          {todosSnapshot?.docs.map((todoEl) => (
-            <ToDoElement
-              key={todoEl.id}
-              id={todoEl.id}
-              todo={todoEl.data()}
-              toggleTodos={toggleTodos}
+        <div class="header">
+          <div class="list">
+            {todosSnapshot?.docs.map((todoEl) => (
+              <ToDoElement
+                key={todoEl.id}
+                id={todoEl.id}
+                todo={todoEl.data()}
+                toggleTodos={toggleTodos}
+              />
+            ))}
+          </div>
+        </div>
+        <div class="features">
+          <div class="row1">
+            <input
+              class="input"
+              ref={inputRef}
+              type="text"
+              placeholder="Add your next Task..."
             />
-          ))}
-        </div>
-        <input
-          class="row1 input"
-          ref={inputRef}
-          type="text"
-          placeholder="Add your next Task..."
-        />
-        <div class="row2">
-          <p class="button button-add" onClick={handleAdd}>
-            <strong>ADD NEW</strong>
-          </p>
-          <p class="button button-clear" onClick={handleClear}>
-            <strong>CLEAR</strong>
-          </p>
-        </div>
-        <div class="row3">
-          <div class="text-bottom">
-            YOU HAVE{" "}
-            <strong>
-              {
-                todosSnapshot?.docs.filter((todo) => !todo.data().completed)
-                  .length
-              }
-            </strong>{" "}
-            TASKS LEFT TO DO!
+          </div>
+          <div class="row2">
+            <p class="button button-add" onClick={handleAdd}>
+              <strong>ADD NEW</strong>
+            </p>
+            <p class="button button-clear" onClick={handleClear}>
+              <strong>CLEAR</strong>
+            </p>
+          </div>
+          <div class="row3">
+            <div class="text-bottom">
+              YOU HAVE{" "}
+              <strong>
+                {
+                  todosSnapshot?.docs.filter((todo) => !todo.data().completed)
+                    .length
+                }
+              </strong>{" "}
+              TASKS LEFT TO DO!
+            </div>
           </div>
         </div>
       </div>
